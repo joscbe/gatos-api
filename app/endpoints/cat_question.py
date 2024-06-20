@@ -89,9 +89,9 @@ def buscar_gatos_por_nome(termo_busca: str):
 
 # Método que busca gatos por raça
 @router.get("/buscar-raca")
-def buscar_gatos_por_raca(termo_busca: str = Body(...)):
+def buscar_gatos_por_raca(termo_busca: str):
     try:
-        gatos_encontrados = [gato.__dict__ for gato in lista_gatos if gato.raca.lower() == termo_busca.lower()]
-        return {'gatos_encontrados': gatos_encontrados}
+        gatos_encontrados = [gato for gato in lista_gatos if termo_busca.lower() in gato.raca.lower()]
+        return gatos_encontrados
     except Exception as e:
         return HTTPException(status_code=500, detail="Internal Server Error")
