@@ -72,22 +72,19 @@ def get_gatos_mais_velhos():
         return HTTPException(status_code=500, detail="Internal Server Error")
 
 # Método que busca gatos por um termo de busca no nome
-@router.post("/buscar-gatos")
-def buscar_gatos_por_nome(termo_busca: str = Body(...)):
+@router.get("/buscar-gatos")
+def buscar_gatos_por_nome(termo_busca: str):
     try:
-        # Transforma a lista de gatos em um dicionário onde as chaves são os IDs
-        dict_gatos = {gato.id: gato for gato in lista_gatos}
-        
         gatos_encontrados = []
-        for gato_id, gato in dict_gatos.items():
+        for gato in lista_gatos:
             if termo_busca.lower() in gato.nome.lower():
                 
                 # Adiciona o gato encontrado ao resultado, excluindo o atributo idade
                 gatos_encontrados.append(gato)
         
-        return {'gatos_encontrados': gatos_encontrados}
+        return gatos_encontrados
     except Exception as e:
-        raise HTTPException(status_code=200, detail="Internal Server Error")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
 # Método que busca gatos por raça
