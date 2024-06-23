@@ -1,20 +1,14 @@
-# Desafio Estágio Projex Consulting
+# Gatos API
 ![Python](https://img.shields.io/badge/python-%233776AB.svg?style=for-the-badge&logo=python&logoColor=white)&nbsp;
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)&nbsp;
 
-Desafio Estágio de Desenvolvimento Projex Consulting 2024.
+## Sobre o projeto
 
-## Sobre o desafio
-
-Parabéns, você foi selecionado(a) para a etapa de desafio de programação.\
-Por favor leia atentamente as instruções a seguir:
-
-- O desafio terá 1 semana de duração
-- Serão avaliadas suas habilidades de resolução de problemas, raciocínio lógico e conhecimentos da linguagem Python e FastAPI
+Uma API que gerência e consome dados de gatos para facilitar a integração de diversas plataformas no lado do cliente.
 
 ## Objetivo
 
-Você recebeu um BackEnd simples de API de gatos, seu objetivo é consertar o código de forma a fazer com que ele rode sem erros, para testar a API use o Postman, ThunderClient ou qualquer outra ferramenta para fazer chamadas de API.
+disponibilizar o serviço para aplicações front-ends consumirem rota de consulta de dados.
 
 ## Dependências
 
@@ -44,10 +38,10 @@ Para visualizar os endpoints acesse este link no seu navegador após rodar o pro
 localhost:8000/docs
 ```
 
-## Respostas esperadas
+## Rotas
 
-### Questão 1 e 3
-Deve retornar um corpo semelhante a esse:
+### /cat_question/gato/{id}
+GET: Retorna o objeto gato pelo id com data de nascimento
 
 ```sh
 {
@@ -59,19 +53,21 @@ Deve retornar um corpo semelhante a esse:
 }
 ```
 
-### Questão 2
-Deve retornar um corpo semelhante a esse:
+### /cat_question/gato
+GET: retorna uma lista de gatos sem data de nascimento e sem idade
 
 ```sh
-{
-    "id": 0,
-    "nome": "Qualquer",
-    "raca": "Qualquer",
-}
+[
+    {
+        "id": 0,
+        "nome": "Qualquer",
+        "raca": "Qualquer", 
+    }
+]
 ```
 
-### Questão 4 e 5
-Deve retornar um corpo semelhante a esse:
+### /cat_question/gatos-mais-velhos
+GET: retorna lista dos gatos mais velhos
 
 ```sh
 [
@@ -88,6 +84,46 @@ Deve retornar um corpo semelhante a esse:
         "raca": "Qualquer",
         "idade": 0,
         "data_nascimento": "0000-00-00"
+    }
+]
+```
+
+### /cat_question/buscar-gato?termo_busca=texto_de_busca
+GET: retorna lista dos gatos pelo termo de busca por nome
+
+```sh
+[
+    {
+        "id": 0,
+        "nome": "Qualquer",
+        "raca": "Qualquer",
+        "idade": 0
+    },
+    {
+        "id": 0,
+        "nome": "Qualquer",
+        "raca": "Qualquer",
+        "idade": 0
+    }
+]
+```
+
+### /cat_question/buscar-raca?termo_busca=texto_de_busca
+GET: retorna lista dos gatos pelo termo de busca por raca
+
+```sh
+[
+    {
+        "id": 0,
+        "nome": "Qualquer",
+        "raca": "Qualquer",
+        "idade": 0
+    },
+    {
+        "id": 0,
+        "nome": "Qualquer",
+        "raca": "Qualquer",
+        "idade": 0
     }
 ]
 ```
